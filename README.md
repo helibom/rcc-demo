@@ -43,6 +43,12 @@ av formulärets olika fält till 'Cancerbehandling' (eller 'Diagnos'),
 Med detta sagt understryker jag att jag är medveten om att jag inte
 kanske förstår domänen eller formulärets 'use case' tillräckligt.
 
+### För att köra:
+Från '/patient-form' kör:
+$ npm install
+$ npm run dev
+
+
 ## Övrigt
 
 ### 22/03/2023
