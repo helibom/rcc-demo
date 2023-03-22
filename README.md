@@ -44,8 +44,8 @@ Med detta sagt understryker jag att jag är medveten om att jag inte
 kanske förstår domänen eller formulärets 'use case' tillräckligt.
 
 ### För att köra:
-Från '/patient-form' kör:
-$ npm install
+Från '/patient-form' kör: <br />
+$ npm install <br />
 $ npm run dev
 
 
