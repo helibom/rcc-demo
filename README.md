@@ -22,7 +22,7 @@ som nämns i domänbeskrivningen som kolumner.
 
 ## Fråga 2.
 Med utgångspunkt av att försöka ta fram ett XML-format som skulle
-kunna läsas in till ett databasschema som jag definierade i Fråga 1.,
+kunna läsas in till ett databasschema som jag definierade i Fråga 1,
 så landade jag i detta [XML Schema](./xml-schema/schema.xsd).
 
 
