@@ -1,7 +1,7 @@
 # RCC-Dev
 
 ## Fråga 1.
-<img src="./database-diagrams/db-diagram-black-background.svg">
+<img src="./database/db-diagram-black-background.svg">
 
 I diagrammet ovan beskriver jag en databasstruktur som jag har skapat baserat på min tolkning av domänbeskrivningen.
 
