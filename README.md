@@ -20,9 +20,6 @@ Detta går även att säga för övriga tabeller.
 Men för denna design har jag valt att hålla mig till att använda dem uppgifter
 som nämns i domänbeskrivningen som kolumner. 
 
-- [ ] I tabell 'Diagnos' används endast dem två första kolumnerna som primary key.
-Detta för att ?
-
 ## Fråga 2.
 Med utgångspunkt av att försöka ta fram ett XML-format som skulle
 kunna läsas in till ett databasschema som jag definierade i Fråga 1.,
