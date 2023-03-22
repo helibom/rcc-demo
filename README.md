@@ -1,4 +1,4 @@
-# RCC-Dev
+# RCC Demo
 
 ## Fråga 1.
 <img src="./database/db-diagram-black-background.svg">
