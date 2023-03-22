@@ -1,0 +1,75 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="register">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="diagnoser">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="diagnos">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="personnummer" type="xs:integer"/>
+                                        <xs:element name="datum" type="xs:date"/>
+                                        <xs:element name="grund" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>    
+                </xs:element>
+                <xs:element name="behandlingar">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="behandling">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="personnummer" type="xs:integer"/>
+                                        <xs:element name="datum" type="xs:date"/>
+                                        <xs:element name="behandling" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="kirurgier"/> <!-- Inte ett ord? :) -->
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="kirurgi">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="personnummer" type="xs:integer"/>
+                                        <xs:element name="datum" type="xs:date"/>
+                                        <xs:element name="opkod" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ecogs">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="ecog">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="personnummer" type="xs:integer"/>
+                                        <xs:element name="datum" type="xs:date"/>
+                                        <xs:simpleType name="värde">
+                                            <xs:restriction base="xs:integer">
+                                            <xs:minExclusive value="1"/>
+                                            <xs:maxExclusive value="5"/>
+                                            </xs:restriction> 
+                                        </xs:simpleType>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>   
+    </xs:element>
+
+</xs:schema> 

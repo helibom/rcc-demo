@@ -1,0 +1,41 @@
+{
+    "personNbr": 199504124091,
+    "behandlingar": [
+        {
+            "behandlingstyp": "Strålbehandling",
+            "datum": "2023-04-12T09:00:00.000Z"
+        },
+        {
+            "behandlingstyp": "Strålbehandling",
+            "datum": "2023-05-12T09:00:00.000Z"
+        },
+        {
+            "behandlingstyp": "Strålbehandling",
+            "datum": "2023-06-12T13:00:00.000Z"
+            
+        },
+        {
+            "behandlingstyp": "Kirurgi",
+            "datum": "2023-09-30T15:30:00.000Z",
+            "opkoder": [
+                "AB3344", "CD5566", "MM7788"
+            ]  
+        },
+        {
+            "behandlingstyp": "Cytostatikabehandling",
+            "datum": "2023-11-30T16:30:00.000Z"
+        }
+    ],
+    "tillstand": [
+        {
+            "ecog": 3,
+            "datum": "2022-12-29T07:30:00.000Z"
+        }
+    ],
+    "diagnoser": [
+        {
+            "diagnosgrund": "Röntgen",
+            "datum": "2022-12-29T08:30:00.000Z"
+        }
+    ]
+}
