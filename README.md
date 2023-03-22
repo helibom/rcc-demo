@@ -29,7 +29,7 @@ så landade jag i detta [XML Schema](./xml-schema/schema.xsd).
 ## Fråga 3.
 För uppbygnad (schema?) på JavaScript-objektet för detta formulär,
 har jag föreslagit ett objekt som finns beskrivet som 'mock data'
-i denna [.JSON fil](./patient-form/public/data/patient-data.json) fil. 
+i denna [.JSON fil](./patient-form/public/data/patient-data.json). 
 
 ## Fråga 4-6
 
