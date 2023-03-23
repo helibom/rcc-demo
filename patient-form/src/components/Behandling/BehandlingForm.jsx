@@ -18,11 +18,8 @@ const BehandlingForm = ({behandlingar, setBehandlingar}) => {
   const [behandling, setBehandling] = useState({
     behandlingstyp: "",
     datum: tomorrow.toISOString(),
-    opkoder: []
+    opkoder: Array()
   })
-
-  /* Is 'behandlingstyp' property of 'Behandling' valid */
-  const [ behandlingstypInvalid, setBehandlingstypInvalid ] = useState(false)
 
   /* OpkoderDialog */
   const [ dialogOpen, setDialogOpen ] = useState(false)
@@ -32,23 +29,31 @@ const BehandlingForm = ({behandlingar, setBehandlingar}) => {
 
   const [ registeringKirurgi, setRegisteringKirurgi ] = useState(true)
 
+  /* Is 'behandlingstyp' property of 'Behandling' valid */
+  const [ behandlingstypInvalid, setBehandlingstypInvalid ] = useState(false)
+
+  const [ opkodInvalid, setOpkodInvalid ] = useState(false)
+
   const onDialogClose = () => {
     
     setDialogOpen(!dialogOpen)
 
-    if (registeringKirurgi) {
+    const registeredBehandling = {
+      ...behandling
+    }
 
+    if (registeringKirurgi) {
       setBehandlingar([
-        behandling,
+        registeredBehandling,
         ...behandlingar
       ])
+      setBehandling({
+        behandlingstyp: "",
+        datum: tomorrow.toISOString(),
+        opkoder: Array()
+      })
     }
-    setTimeout(() => (setRegisteringKirurgi(true)), 500) // dirty hack for ugly re-rendering of dialog 
-    // setBehandling({
-    //   behandlingstyp: "",
-    //   datum: tomorrow.toISOString(),
-    //   opkoder: []
-    // })
+    setRegisteringKirurgi(false)
     setBehandlingInDialog(behandling)
   }
 
@@ -57,15 +62,15 @@ const BehandlingForm = ({behandlingar, setBehandlingar}) => {
       if (dayjs(behandling.datum).isBefore(dayjs())) {
         return
       }
-
       if (!BehandlingDataValidator(behandling.behandlingstyp, 'behandlingstyp').valid) {
         setBehandlingstypInvalid(true)
         return 
       } 
-
       if (BehandlingDataValidator(behandling.behandlingstyp, 'kirurgi').valid) {
+        setRegisteringKirurgi(true)
         setDialogOpen(true)
-      } else {
+      } 
+      else {
         setBehandlingar([
           behandling,
           ...behandlingar
@@ -75,12 +80,11 @@ const BehandlingForm = ({behandlingar, setBehandlingar}) => {
   
   const handleNewDatum = (date) => {
 
-    const updatedBehandling = {
+    setBehandling({
       ...behandling,
-      datum: dayjs(date).toISOString()
-    }
-    setBehandlingInDialog(updatedBehandling)
-    setBehandling(updatedBehandling)
+      datum: date.toISOString()
+    })
+    setBehandlingInDialog(behandling)
   }
 
   const handleNewBehandlingstyp = (e) => {
@@ -94,6 +98,21 @@ const BehandlingForm = ({behandlingar, setBehandlingar}) => {
     setBehandlingstypInvalid(false)
   }
 
+  const handleRegisterOpkod = (opkod) => {
+
+    if (BehandlingDataValidator(opkod, 'opkod').valid) {
+
+      const updatedBehandling = {
+        ...behandling,
+        opkoder: [opkod, ...behandling.opkoder]
+      }
+      setBehandling(updatedBehandling)
+      setBehandlingInDialog(updatedBehandling)
+      setOpkodInvalid(false)
+    } else {
+      setOpkodInvalid(true)
+    }
+  }
 
   return (
     <React.Fragment>
@@ -132,11 +151,13 @@ const BehandlingForm = ({behandlingar, setBehandlingar}) => {
           Registrera Behandling
         </Button>
         <OpkoderDialog
-            open={dialogOpen}
-            behandling={behandlingInDialog}
-            setBehandling={setBehandling}
-            onDialogClose={onDialogClose}
+            dialogOpen={dialogOpen}
             registeringKirurgi={registeringKirurgi}
+            datum={behandlingInDialog.datum}
+            opkoder={behandlingInDialog.opkoder}
+            opkodInvalid={opkodInvalid}
+            handleRegisterOpkod={handleRegisterOpkod}
+            onDialogClose={onDialogClose}
             /> 
         <BehandlingTable 
           behandlingar={behandlingar} 

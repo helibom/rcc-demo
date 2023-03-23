@@ -3,17 +3,13 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
 import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
-import UnfoldLessIcon from '@mui/icons-material/UnfoldLess';
-import OpkoderDialog from './OpkoderDialog';
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 export const BehandlingTableRow = (props) => {
 
   const { behandling, setDialogOpen,  
     setBehandlingInDialog, setRegisteringKirurgi} = props
   
-  const [ iconOpen, setIconOpen] = useState(false);
-
   const handleOnOpkoderCellClick = () => {
     setBehandlingInDialog(behandling)
     setRegisteringKirurgi(false)

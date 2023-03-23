@@ -7,56 +7,36 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField';
-import { useState, useEffect } from 'react'
-import BehandlingDataValidator from '../../util/validator/BehandlingDataValidator';
+import { useState } from 'react'
 
 
 const OpkoderDialog = (props) => {
 
-    const { open, behandling, setBehandling,
-        onDialogClose, registeringKirurgi } = props; 
+    const { dialogOpen, onDialogClose, registeringKirurgi,
+        datum, opkoder, handleRegisterOpkod, opkodInvalid } = props; 
 
-    const [ dialogOpkoder, setDialogOpkoder ] = useState(behandling.opkoder)
     const [ dialogOpkod, setDialogOpkod ] = useState("")
-    
-    const [ invalidOpkod, setInvalidOpkod ] = useState(false)
-
-    useEffect(() => {
-        setDialogOpkoder(behandling.opkoder)
-    }, [behandling])
 
     const handleOnAddClick = () => {
-
-        if (BehandlingDataValidator(dialogOpkod, 'opkod').valid) {
-
-            setBehandling({
-                ...behandling,
-                opkoder: [...behandling.opkoder, dialogOpkod]
-            })
-            setDialogOpkod("")
-        } else {
-            setInvalidOpkod(true)
-        }
+        handleRegisterOpkod(dialogOpkod)
     }        
 
     const handleClose = () => {
-
-        setDialogOpkod("")
         onDialogClose()
+        setDialogOpkod("")
     }
 
     const handleOnOpkodChange = (e) => {
         setDialogOpkod(e.target.value)
-        setInvalidOpkod(false)
     }
 
     return (
         <Dialog 
             onClose={handleClose}
-            open={open}>
+            open={dialogOpen}>
             { 
-                behandling.datum ?
-                <DialogTitle>Operationskoder {behandling.datum.substring(0,10)}</DialogTitle>
+                datum ?
+                <DialogTitle>Operationskoder {datum.substring(0,10)}</DialogTitle>
                 :
                 <DialogTitle>Saknar operationskoder för behandling</DialogTitle>
             }
@@ -66,7 +46,7 @@ const OpkoderDialog = (props) => {
                 and not browsing 'Opkoder' */ 
                 registeringKirurgi ?
                 <Box sx={{ alignItems: 'center', width: 'fit-content'}}>
-                    { invalidOpkod ? 
+                    { opkodInvalid ? 
                         <TextField 
                         error
                         id="outlined-basic" 
@@ -74,7 +54,7 @@ const OpkoderDialog = (props) => {
                         helperText="Ex. AB4455"
                         variant="filled"
                         value={dialogOpkod}
-                        onChange={(e) => handleOnOpkodChange(e)} />
+                        onChange={(e) => handleOnOpkodChange(e)}/>
                     :
                         <TextField 
                         id="outlined-basic" 
@@ -82,13 +62,16 @@ const OpkoderDialog = (props) => {
                         helperText="Ex. AB4455"
                         variant="filled"
                         value={dialogOpkod}
-                        onChange={(e) => handleOnOpkodChange(e)} />
+                        onChange={(e) => handleOnOpkodChange(e)}/>
                     }
-                    <Button variant="contained" size='large' onClick={handleOnAddClick}>
+                    <Button 
+                        variant="contained" 
+                        size='large' 
+                        onClick={handleOnAddClick}>
                         Lägg till kod
                     </Button>
                     <List dense={true} sx={{ pt: 0 }}>
-                        { dialogOpkoder && dialogOpkoder.map((opkod) => (
+                        { opkoder && opkoder.map((opkod) => (
                             <ListItem>
                                 <ListItemText
                                 primary={opkod}/>
@@ -101,7 +84,7 @@ const OpkoderDialog = (props) => {
                    if user just browsing */
                 <Box sx={{ alignItems: 'center', width: 'fit-content'}}>
                     <List dense={true} sx={{ pt: 0 }}>
-                        { dialogOpkoder && dialogOpkoder.map((opkod) => (
+                        { opkoder && opkoder.map((opkod) => (
                             <ListItem>
                                 <ListItemText
                                 primary={opkod}/>

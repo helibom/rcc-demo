@@ -2,47 +2,29 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-import { useState } from "react"
-import { ButtonBase } from '@mui/material';
-import { useSate } from 'react'
-
-import PatientDataValidator from "../util/validator/PatientDataValidator";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
 
-const PatientFormSaveButton = ({patientData}) => {
+const PatientFormSaveButton = (props) => {
 
-    const [ saveFailure, setSaveFailure ] = useState(false)
-    const [ saveSuccess, setSaveSuccess ] = useState(false)
-
-    const onClickSaveButton = () => {
+    const { validateChanges, saveSuccess, 
+        setSaveSuccess, saveFailure, setSaveFailure } = props 
         
-        if (PatientDataValidator(patientData).valid) {
 
-            window.inca = patientData
-
-            setSaveSuccess(true)
-        } else {
-            setSaveFailure(true)
-        }
-
-        console.log(window.inca)
-    }
-
-    const handleSuccessClose = () => {
+    const handleOnSuccesBarClose = () => {
         setSaveSuccess(!saveSuccess)
     }
 
-    const handleFailureClose = () => {
+    const handleOnFailureBarClose = () => {
         setSaveFailure(!saveFailure)
     }
     
     return (
         <React.Fragment>
         <Button 
-            onClick={onClickSaveButton}
+            onClick={validateChanges}
             size='large'
             variant="contained"
             color='info' sx={{bottom:0, right:0, position:"fixed", marginRight:10, marginBottom:10}}>
@@ -51,16 +33,16 @@ const PatientFormSaveButton = ({patientData}) => {
         <Snackbar 
             open={saveSuccess}
             autoHideDuration={6000}
-            onClose={handleSuccessClose}>
-            <Alert onClose={handleSuccessClose} severity="success" sx={{ width: '100%' }}>
+            onClose={handleOnSuccesBarClose}>
+            <Alert onClose={handleOnSuccesBarClose} severity="success" sx={{ width: '100%' }}>
             Ändringar har sparats till INCA
             </Alert>
         </Snackbar>
         <Snackbar
             open={saveFailure}
             autoHideDuration={6000}
-            onClose={handleFailureClose}>
-            <Alert onClose={handleSuccessClose} severity="error" sx={{ width: '100%' }}>
+            onClose={handleOnFailureBarClose}>
+            <Alert onClose={handleOnSuccesBarClose} severity="error" sx={{ width: '100%' }}>
             Ändringar kunde inte sparas<br></br>
             Uppgifter felaktiga
             </Alert>

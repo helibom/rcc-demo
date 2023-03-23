@@ -55,8 +55,8 @@ const DiagnosForm = ({diagnoser, setDiagnoser}) => {
 
   return (
     <React.Fragment>
-      <Stack spacing={1}>
-        <TabHeader headerTitle="Diagnos"/>
+      <Stack spacing={1} sx={{marginTop:2}}>
+        <TabHeader headerTitle="Canceranmälan"/>
         {saveFailure ? 
           <TextField 
             error

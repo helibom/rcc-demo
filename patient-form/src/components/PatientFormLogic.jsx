@@ -4,11 +4,10 @@ import { useState } from "react";
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
 import PatientFormSaveButton from "./PatientFormSaveButton";
 import BehandlingForm from "./Behandling/BehandlingForm";
 import TillståndForm from "./Allmäntillstånd/TillståndForm";
+import PatientDataValidator from "../util/validator/PatientDataValidator.js"
 
 
 const PatientFormLogic = ({patientData}) => {
@@ -18,10 +17,34 @@ const PatientFormLogic = ({patientData}) => {
     const [ allmänTillstånd, setAllmänTillstånd ] = useState(patientData.tillstand)
 
     const [ tabChoice, setTabChoice ] = useState(0)
-
     const onTabsChange = (event, newChoice) => {
         setTabChoice(newChoice)
     };
+
+    const [ saveSuccess, setSaveSuccess ] = useState(false)
+    const [ saveFailure, setSaveFailure ] = useState(false)
+
+    /* Validates new data registered
+       during the 'session' */
+    const validateChanges = () => {
+
+        const data = {
+            personNbr: patientData.personNbr,
+            behandlingar: behandlingar,
+            tillstand: allmänTillstånd,
+            diagnoser: diagnoser
+        }
+
+        if (PatientDataValidator(data).valid) {
+
+            /* Submit validated data to INCA here */
+            window.inca = data
+
+            setSaveSuccess(true)
+        } else {
+            setSaveFailure(true)
+        }
+    }
 
     return ( 
         <React.Fragment>
@@ -41,7 +64,13 @@ const PatientFormLogic = ({patientData}) => {
                     <TillståndForm allmänTillstånd={allmänTillstånd} setAllmänTillstånd={setAllmänTillstånd}/>
                 }  
             <Box/>
-            <PatientFormSaveButton patientData={patientData}/>
+            <PatientFormSaveButton 
+                validateChanges={validateChanges}
+                saveSuccess={saveSuccess} 
+                setSaveSuccess={setSaveSuccess}
+                saveFailure={saveFailure}
+                setSaveFailure={setSaveFailure}
+                />
         </React.Fragment>          
     )
   }

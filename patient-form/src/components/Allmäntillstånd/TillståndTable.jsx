@@ -21,8 +21,8 @@ const TillståndTable = ({allmänTillstånd}) => {
             size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-                <TableCell>ECOG</TableCell>
-                <TableCell align="right">Datum</TableCell>
+                <TableCell><b>ECOG</b></TableCell>
+                <TableCell align="right"><b>Datum</b></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>              

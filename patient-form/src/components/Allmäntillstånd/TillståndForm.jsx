@@ -59,7 +59,7 @@ const TillståndForm = ({allmänTillstånd, setAllmänTillstånd}) => {
 
   return (
     <React.Fragment>
-      <Stack spacing={1}>
+      <Stack spacing={1} sx={{marginTop:2}}>
         <TabHeader headerTitle="Allmäntillstånd"/>
         { saveFailure ?
             <FormControl fullWidth error>
