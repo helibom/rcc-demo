@@ -48,22 +48,4 @@ Från '/patient-form' kör: <br />
 $ npm install <br />
 $ npm run dev
 
-
-## Övrigt
-
-### 22/03/2023
-Det återstår en bugg under formulärets flik 'Behandling',
-där operationskoder inte presenteras korrekt när dessa 
-läggs till en Behandling med typen 'Kirurgi'. 
-
-Eftersom jag är osäker på om deadline för detta arbetsprov
-var 22/03 eller 23/03, då jag fick formulering att 
-"du har på dig t.o.m 23:dje mars att lämna in",
-så väljer jag att lämna in så här.
-
-Skulle jag få varsel imorgon om att 23/03 också räknas 
-som en arbetsdag, så kanske jag pushar en commit
-med en lösning till detta repository.
-Annars får jag kanske svälja att detta är min final-lösning. 
-
 ##### Tack för mig! / Henrik
