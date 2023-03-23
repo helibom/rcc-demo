@@ -33,14 +33,14 @@ i denna [.JSON fil](./patient-form/public/data/patient-data.json).
 
 ## Fråga 4-6
 
-För fråga 4 till 6 har jag försökt uppnå kraven jag tolkat från specifikationen
-i en enhetlig lösning i detta som finns under gränssnitt './patient-form'.
-En egeg tolkning av specifikationen som bör omnämnas, 
+För Fråga 4 till 6 har jag försökt uppnå kraven jag tolkat från specifikationen
+i en enhetlig lösning som finns under gränssnitt './patient-form'.
+En egen tolkning av specifikationen som bör omnämnas, 
 är att jag tillägnat registreringen av 'Allmäntillstånd'/'ECOG'
 till en egen flik. Jag tolkade det som en logisk uppdelning 
 av formulärets olika fält till 'Cancerbehandling' (eller 'Diagnos'),
 'Behandling' och 'Allmäntillstånd'. 
-Med detta sagt understryker jag att jag är medveten om att jag inte
+Med detta sagt understryker jag, att jag är medveten om att jag inte
 kanske förstår domänen eller formulärets 'use case' tillräckligt.
 
 ### För att köra:
