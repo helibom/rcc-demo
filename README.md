@@ -34,7 +34,7 @@ i denna [.JSON fil](./patient-form/public/data/patient-data.json).
 ## Fråga 4-6
 
 För Fråga 4 till 6 har jag försökt uppnå kraven jag tolkat från specifikationen
-i en enhetlig lösning som finns under gränssnitt './patient-form'.
+i en enhetlig lösning som finns under gränssnittet i './patient-form'.
 En egen tolkning av specifikationen som bör omnämnas, 
 är att jag tillägnat registreringen av 'Allmäntillstånd'/'ECOG'
 till en egen flik. Jag tolkade det som en logisk uppdelning 
